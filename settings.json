@@ -12,6 +12,8 @@
     "vim.visualbell": true,
     "vim.useSystemClipboard": true,
     "vim.gdefault": true,
+    "vim.timeout": true,
+    "vim.timeoutLen": 5000,
 
     // ========================================================
     // VIM PLUGIN SETTINGS
@@ -61,6 +63,9 @@
     // ========================================================
     "vim.normalModeKeyBindingsNonRecursive": [
 
+        // ---- Which Key trigger (DEBE SER EL PRIMERO) ----
+        { "before": ["<leader>"], "commands": ["whichkey.show"] },
+
         // ---- Tab navigation ----
         { "before": ["<C-p>"], "commands": ["workbench.action.previousEditor"] },
         { "before": ["<C-n>"], "commands": ["workbench.action.nextEditor"] },
@@ -84,181 +89,7 @@
         { "before": ["<C-S-m>"], "commands": ["workbench.action.togglePanel"] },
 
         // ---- Clear search highlighting ----
-        { "before": ["<C-[>"], "commands": [":nohl"] },
-
-        // ======================================================
-        // LEADER: Information <leader>i
-        // ======================================================
-        { "before": ["<leader>", "i", "e"], "commands": ["editor.action.showHover"] },
-        { "before": ["<leader>", "i", "t"], "commands": ["editor.action.showHover"] },
-        { "before": ["<leader>", "i", "p"], "commands": ["editor.action.triggerParameterHints"] },
-        { "before": ["<leader>", "i", "j"], "commands": ["editor.action.showHover"] },
-        { "before": ["<leader>", "i", "f"], "commands": ["workbench.action.gotoSymbol"] },
-        { "before": ["<leader>", "i", "U"], "commands": ["workbench.action.showAllSymbols"] },
-        { "before": ["<leader>", "i", "h"], "commands": ["references-view.showCallHierarchy"] },
-        { "before": ["<leader>", "i", "u"], "commands": ["editor.action.goToReferences"] },
-        { "before": ["<leader>", "i", "m"], "commands": ["references-view.showCallHierarchy"] },
-
-        // ======================================================
-        // LEADER: Window splits <leader>w
-        // ======================================================
-        { "before": ["<leader>", "w", "v"], "commands": ["workbench.action.splitEditor"] },
-        { "before": ["<leader>", "w", "h"], "commands": ["workbench.action.splitEditorDown"] },
-        { "before": ["<leader>", "w", "u"], "commands": ["workbench.action.joinAllGroups"] },
-        { "before": ["<leader>", "w", "m"], "commands": ["workbench.action.moveEditorToNextGroup"] },
-        { "before": ["<leader>", "w", "b"], "commands": ["workbench.action.navigateBack"] },
-        { "before": ["<leader>", "w", "f"], "commands": ["workbench.action.navigateForward"] },
-
-        // ======================================================
-        // LEADER: Tabs <leader>t
-        // ======================================================
-        { "before": ["<leader>", "t", "P"], "commands": ["workbench.action.pinEditor"] },
-        { "before": ["<leader>", "t", "x"], "commands": ["workbench.action.closeActiveEditor"] },
-        { "before": ["<leader>", "t", "X"], "commands": ["workbench.action.closeAllEditors"] },
-        { "before": ["<leader>", "t", "o"], "commands": ["workbench.action.closeOtherEditors"] },
-        { "before": ["<leader>", "t", "a"], "commands": ["workbench.action.closeAllEditors"] },
-        { "before": ["<leader>", "t", "l"], "commands": ["workbench.action.closeEditorsToTheLeft"] },
-        { "before": ["<leader>", "t", "r"], "commands": ["workbench.action.closeEditorsToTheRight"] },
-
-        // ======================================================
-        // LEADER: Display <leader>D
-        // ======================================================
-        { "before": ["<leader>", "D", "d"], "commands": ["workbench.action.closeSidebar"] },
-        { "before": ["<leader>", "D", "z"], "commands": ["workbench.action.toggleZenMode"] },
-        { "before": ["<leader>", "D", "f"], "commands": ["workbench.action.toggleFullScreen"] },
-
-        // ======================================================
-        // LEADER: File navigation <leader>f
-        // ======================================================
-        { "before": ["<leader>", "f", "g"], "commands": ["workbench.action.quickOpen"] },
-        { "before": ["<leader>", "f", "r"], "commands": ["workbench.action.openRecent"] },
-        { "before": ["<leader>", "f", "c"], "commands": ["workbench.action.findInFiles"] },
-        { "before": ["<leader>", "f", "l"], "commands": ["workbench.action.openRecent"] },
-        { "before": ["<leader>", "f", "s"], "commands": ["workbench.action.files.newUntitledFile"] },
-        { "before": ["<leader>", "f", "e"], "commands": ["workbench.action.toggleSidebarVisibility"] },
-        { "before": ["<leader>", "f", "o"], "commands": ["workbench.action.files.openFile"] },
-        { "before": ["<leader>", "f", "y"], "commands": ["copyFilePath"] },
-        { "before": ["<leader>", "f", "p"], "commands": ["workbench.action.openRecent"] },
-        { "before": ["<leader>", "f", "h"], "commands": ["workbench.action.localHistory.create"] },
-        { "before": ["<leader>", "f", "f"], "commands": ["workbench.action.files.revealActiveFileInWindows"] },
-        { "before": ["<leader>", "f", "i"], "commands": ["revealInExplorer"] },
-        { "before": ["<leader>", "f", "R"], "commands": ["workbench.action.replaceInFiles"] },
-
-        // ======================================================
-        // LEADER: Run <leader>r
-        // ======================================================
-        { "before": ["<leader>", "r", "m"], "commands": ["workbench.action.debug.selectandstart"] },
-        { "before": ["<leader>", "r", "n"], "commands": ["workbench.action.debug.run"] },
-        { "before": ["<leader>", "r", "c"], "commands": ["workbench.action.debug.run"] },
-        { "before": ["<leader>", "r", "r"], "commands": ["workbench.action.debug.restart"] },
-        { "before": ["<leader>", "r", "t"], "commands": ["testing.runAll"] },
-        { "before": ["<leader>", "r", "f"], "commands": ["testing.reRunFailTests"] },
-        { "before": ["<leader>", "r", "s"], "commands": ["workbench.action.debug.stop"] },
-        { "before": ["<leader>", "r", "C"], "commands": ["workbench.action.debug.selectandstart"] },
-
-        // ======================================================
-        // LEADER: Debug <leader>d
-        // ======================================================
-        { "before": ["<leader>", "d", "x"], "commands": ["workbench.action.debug.start"] },
-        { "before": ["<leader>", "d", "c"], "commands": ["workbench.action.debug.start"] },
-        { "before": ["<leader>", "d", "v"], "commands": ["workbench.debug.action.toggleBreakpoint"] },
-        { "before": ["<leader>", "d", "e"], "commands": ["editor.debug.action.conditionalBreakpoint"] },
-        { "before": ["<leader>", "d", "m"], "commands": ["workbench.debug.viewlet.action.disableAllBreakpoints"] },
-        { "before": ["<leader>", "d", "t"], "commands": ["editor.debug.action.toggleBreakpoint"] },
-        { "before": ["<leader>", "d", "C"], "commands": ["editor.debug.action.runToCursor"] },
-        { "before": ["<leader>", "d", "i"], "commands": ["workbench.action.debug.stepInto"] },
-        { "before": ["<leader>", "d", "o"], "commands": ["workbench.action.debug.stepOver"] },
-        { "before": ["<leader>", "d", "r"], "commands": ["workbench.action.debug.continue"] },
-        { "before": ["<leader>", "d", "R"], "commands": ["editor.debug.action.selectionToRepl"] },
-        { "before": ["<leader>", "d", "w"], "commands": ["workbench.debug.action.focusRepl"] },
-
-        // ======================================================
-        // LEADER: Language/Refactor <leader>l
-        // ======================================================
-        { "before": ["<leader>", "l", "l"], "commands": ["editor.action.refactor"] },
-        { "before": ["<leader>", "l", "r"], "commands": ["editor.action.rename"] },
-        { "before": ["<leader>", "l", "c"], "commands": ["editor.action.refactor"] },
-        {
-            "before": ["<leader>", "l", "v"],
-            "commands": ["editor.action.codeAction"],
-            "args": { "kind": "refactor.extract.variable" }
-        },
-        {
-            "before": ["<leader>", "l", "i"],
-            "commands": ["editor.action.codeAction"],
-            "args": { "kind": "refactor.inline" }
-        },
-        {
-            "before": ["<leader>", "l", "f"],
-            "commands": ["editor.action.codeAction"],
-            "args": { "kind": "refactor.extract.field" }
-        },
-        {
-            "before": ["<leader>", "l", "m"],
-            "commands": ["editor.action.codeAction"],
-            "args": { "kind": "refactor.extract.function" }
-        },
-        {
-            "before": ["<leader>", "l", "C"],
-            "commands": ["editor.action.codeAction"],
-            "args": { "kind": "refactor.extract.constant" }
-        },
-        { "before": ["<leader>", "l", "p"], "commands": ["editor.action.refactor"] },
-        { "before": ["<leader>", "l", "o"], "commands": ["editor.action.refactor"] },
-        { "before": ["<leader>", "l", "e"], "commands": ["editor.action.refactor"] },
-        { "before": ["<leader>", "l", "a"], "commands": ["editor.action.quickFix"] },
-        { "before": ["<leader>", "l", "R"], "commands": ["editor.action.formatDocument"] },
-        { "before": ["<leader>", "l", "I"], "commands": ["editor.action.sourceAction"] },
-        { "before": ["<leader>", "l", "G"], "commands": ["editor.action.sourceAction"] },
-
-        // ======================================================
-        // LEADER: Bookmarks <leader>b
-        // ======================================================
-        { "before": ["<leader>", "b", "m"], "commands": ["bookmarks.listFromAllFiles"] },
-        { "before": ["<leader>", "b", "s"], "commands": ["bookmarks.listFromAllFiles"] },
-        { "before": ["<leader>", "b", "t"], "commands": ["workbench.view.extension.bookmarks"] },
-        { "before": ["<leader>", "b", "b"], "commands": ["bookmarks.toggle"] },
-        { "before": ["<leader>", "b", "e"], "commands": ["bookmarks.toggleLabeled"] },
-        { "before": ["<leader>", "b", "p"], "commands": ["bookmarks.jumpToPrevious"] },
-        { "before": ["<leader>", "b", "n"], "commands": ["bookmarks.jumpToNext"] },
-
-        // ======================================================
-        // LEADER: Go To <leader>g
-        // ======================================================
-        { "before": ["<leader>", "g", "d"], "commands": ["editor.action.revealDefinition"] },
-        { "before": ["<leader>", "g", "o"], "commands": ["editor.action.goToSuperImplementation"] },
-        { "before": ["<leader>", "g", "D"], "commands": ["editor.action.goToTypeDefinition"] },
-        { "before": ["<leader>", "g", "i"], "commands": ["editor.action.goToImplementation"] },
-        { "before": ["<leader>", "g", "T"], "commands": ["testing.openTestAtCursor"] },
-
-        // ======================================================
-        // LEADER: Search <leader>s
-        // ======================================================
-        { "before": ["<leader>", "s", "S"], "commands": ["workbench.action.showAllSymbols"] },
-        { "before": ["<leader>", "s", "u"], "commands": ["editor.action.goToReferences"] },
-        { "before": ["<leader>", "s", "n"], "commands": ["breadcrumbs.focusAndSelect"] },
-        { "before": ["<leader>", "s", "a"], "commands": ["workbench.action.showCommands"] },
-        { "before": ["<leader>", "s", "c"], "commands": ["workbench.action.showAllSymbols"] },
-        { "before": ["<leader>", "s", "f"], "commands": ["workbench.action.quickOpen"] },
-        { "before": ["<leader>", "s", "s"], "commands": ["workbench.action.gotoSymbol"] },
-        { "before": ["<leader>", "s", "t"], "commands": ["workbench.action.findInFiles"] },
-
-        // ======================================================
-        // LEADER: Git <leader>G
-        // ======================================================
-        { "before": ["<leader>", "G", "c"], "commands": ["workbench.view.scm"] },
-        { "before": ["<leader>", "G", "b"], "commands": ["git.checkout"] },
-        { "before": ["<leader>", "G", "f"], "commands": ["git.fetch"] },
-        { "before": ["<leader>", "G", "p"], "commands": ["git.push"] },
-        { "before": ["<leader>", "G", "P"], "commands": ["git.commitAll"] },
-        { "before": ["<leader>", "G", "o"], "commands": ["gitlens.openPullRequestOnRemote"] },
-        { "before": ["<leader>", "G", "m"], "commands": ["workbench.view.scm"] },
-        { "before": ["<leader>", "G", "g"], "commands": ["git.commit"] },
-        { "before": ["<leader>", "G", "a"], "commands": ["gitlens.toggleFileBlame"] },
-        { "before": ["<leader>", "G", "t"], "commands": ["workbench.view.scm"] },
-        { "before": ["<leader>", "G", "r"], "commands": ["git.revertSelectedRanges"] },
-        { "before": ["<leader>", "G", "u"], "commands": ["git.sync"] },
-        { "before": ["<leader>", "G", "l"], "commands": ["gitlens.showGraph"] }
+        { "before": ["<C-[>"], "commands": [":nohl"] }
     ],
 
     // ========================================================
