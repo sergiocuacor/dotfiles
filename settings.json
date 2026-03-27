@@ -21,7 +21,7 @@
     "vim.replaceWithRegister": true,
     "vim.surround": true,
     "vim.sneak": true,
-    "vim.easymotion": true,
+    "vim.easymotion": false,
     "vim.highlightedyank.enable": true,
     "vim.highlightedyank.duration": 200,
     "vim.camelCaseMotion.enable": true,
