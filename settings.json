@@ -1,0 +1,52 @@
+{
+    // ========================================================
+    // VIM BASE SETTINGS
+    // ========================================================
+    "vim.scrolloff": 10,
+    "vim.smartcase": true,
+    "vim.incsearch": true,
+    "vim.hlsearch": true,
+    "vim.visualbell": true,
+    "vim.useSystemClipboard": true,
+    "vim.gdefault": true,
+    "vim.timeout": true,
+    "vim.timeoutLen": 1000,
+
+    // ========================================================
+    // VIM PLUGINS
+    // ========================================================
+    "vim.surround": true,
+    "vim.sneak": true,
+    "vim.highlightedyank.enable": true,
+    "vim.highlightedyank.duration": 200,
+
+    // ========================================================
+    // INSERT MODE
+    // ========================================================
+    "vim.insertModeKeyBindingsNonRecursive": [
+        { "before": ["j", "j"], "after": ["<Esc>"] }
+    ],
+
+    // ========================================================
+    // VISUAL MODE
+    // ========================================================
+    "vim.visualModeKeyBindingsNonRecursive": [
+        { "before": ["<"], "commands": ["editor.action.outdentLines"], "after": ["g", "v"] },
+        { "before": [">"], "commands": ["editor.action.indentLines"], "after": ["g", "v"] }
+    ],
+
+    // ========================================================
+    // NORMAL MODE
+    // ========================================================
+    "vim.normalModeKeyBindingsNonRecursive": [
+        // Go to
+        { "before": ["g", "d"], "commands": ["editor.action.revealDefinition"] },
+        { "before": ["g", "r"], "commands": ["editor.action.goToReferences"] },
+
+        // Pane navigation
+        { "before": ["<C-h>"], "commands": ["workbench.action.focusLeftGroup"] },
+        { "before": ["<C-j>"], "commands": ["workbench.action.focusBelowGroup"] },
+        { "before": ["<C-k>"], "commands": ["workbench.action.focusAboveGroup"] },
+        { "before": ["<C-l>"], "commands": ["workbench.action.focusRightGroup"] }
+    ]
+}
